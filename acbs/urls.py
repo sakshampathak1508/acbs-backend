@@ -15,10 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.conf import settings
+from django.conf.urls.static import static
+# from django.conf.urls import url
+from django.views.static import serve as mediaserve
+from django.views.generic.base import TemplateView
+admin.site.site_header = "ACBS Admin"
+admin.site.index_title = "ACBS Admin Panel"
+# from rest_framework.documentation import include_docs_urls
+# from rest_framework_swagger.views import get_swagger_view 
+# schema_view = get_swagger_view(title="Swagger Docs")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('home.urls')),
     path('news/', include('news.urls')),
     path('events/', include('events.urls')),
+    # path('docs/', schema_view),
 ]
+
+urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
