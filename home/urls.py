@@ -1,5 +1,8 @@
 from django.urls import path
-from .views import SponsersView, LatestAnnouncement, AboutUSView
+from .views import (
+    SponsersView, LatestAnnouncement, AboutUSView
+)
+
 urlpatterns = [
     path('sponsers/', SponsersView.as_view()),
     path('announcement/', LatestAnnouncement.as_view()),

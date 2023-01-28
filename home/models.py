@@ -9,7 +9,7 @@ class Annoucement(models.Model):
     url = models.URLField(blank=True, null=True)
     name = models.CharField(max_length=100, null=True, blank=True)
     show = models.BooleanField(default=True)
-    created_at = models.DateTimeField(default=timezone.now())
+    created_at = models.DateTimeField(default=timezone.now)
     
     def __str__(self):           
         return self.title
@@ -30,3 +30,6 @@ class AboutUs(models.Model):
     class Meta:
         verbose_name = "About Us"
         verbose_name_plural = "About Us"
+    
+    def __str__(self):           
+        return "About Us"

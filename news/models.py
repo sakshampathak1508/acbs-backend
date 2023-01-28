@@ -11,15 +11,16 @@ NEWS_CATEGORY = (
 )
 
 ACBS_CATEGORY = (
-    (1,'World Snooker'),
-    (2,'World Billiards'),
-    (3,'World 6Reds'),
-    (4,'World Team'),
-    (5,'World U21'),
-    (6,'World U18'),
-    (7,'World U17'),
-    (8,'World U16'),
-    (9,'World Cup'),
+    (1,'Snooker'),
+    (2,'Billiards'),
+    (3,'10Red'),
+    (4,'6Red'),
+    (5,'Team'),
+    (6,'Juniors'),
+    (7,'8Ball Pool'),
+    (8,'9Ball Pool'),
+    (9,'10Ball Pool'),
+    (10,'World Cup'),
 )
 
 class News(models.Model):
@@ -43,4 +44,6 @@ class News(models.Model):
     def save(self,*args,**kwargs):
         value = self.title.lower()
         self.slug = value.replace(' ','-')
+        y = self.timestamp.year
+        self.year = y
         super().save(*args,**kwargs)
