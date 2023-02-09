@@ -33,3 +33,29 @@ class AboutUs(models.Model):
     
     def __str__(self):           
         return "About Us"
+
+
+class MemberCountries(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    flag = models.ImageField(upload_to='countries/flags')
+    facebook = models.URLField(blank=True, null=True)
+    instagram = models.URLField(blank=True, null=True)
+    twitter = models.URLField(blank=True, null=True)
+    site= models.URLField(blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Member Country"
+        verbose_name_plural = "Member Countries"
+    
+    def __str__(self) -> str:
+        return self.name
+    
+class Executive(models.Model):
+    name = models.CharField(max_length=100)
+    title = models.CharField(max_length=200)
+    origin_country = models.CharField(max_length=100, verbose_name="Country of Origin")
+
+    def __str__(self) -> str:
+        return self.name
+
+
