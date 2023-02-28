@@ -7,7 +7,7 @@ from .models import (
 class CardNewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
-        fields = ('id','title','slug','image')
+        fields = ('id','title','slug','views','image')
 
 class NewsSerializer(serializers.ModelSerializer):
     content = serializers.SerializerMethodField()

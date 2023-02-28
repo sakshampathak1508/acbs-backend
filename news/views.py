@@ -30,17 +30,14 @@ class NewsView(APIView):
     def get(self, request, *args, **kwargs):
         nid = request.GET.get('id','')
         obj = News.objects.filter(id=nid).first()
+        if obj:
+            obj.views += 1
+            obj.save()
         ser = NewsSerializer(obj)
         return Response(ser.data)
 
-class FeaturedNewsView(APIView):
-    def get(self, request, *args, **kwargs):
-        obj = News.objects.filter(category=2).order_by('-timestamp')[:3]
-        ser = CardNewsSerializer(obj,many=True)        
-        return Response(ser.data, status = status.HTTP_200_OK)
-
 class LatestNewsView(APIView):
     def get(self, request, *args, **kwargs):
-        obj = News.objects.filter(category=1).order_by('-timestamp')[:4]
+        obj = News.objects.filter(category=1).order_by('-timestamp')[:3]
         ser = CardNewsSerializer(obj,many=True)        
         return Response(ser.data, status = status.HTTP_200_OK)

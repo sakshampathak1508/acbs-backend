@@ -26,6 +26,7 @@ class Event(models.Model):
     start_date = models.DateField(default=timezone.now)
     end_date = models.DateField(default=timezone.now)
     results = models.URLField(blank=True,null=True)
+    event_banner = models.ImageField(upload_to='news/images',blank=True,null=True)
     photographs = models.URLField(blank=True,null=True)
     video = models.URLField(blank=True,null=True)
     live = models.URLField(blank=True,null=True)
