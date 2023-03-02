@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Annoucement, Sponser, AboutUs
+from .models import Annoucement, Executive, Sponser, AboutUs, MemberCountries
 
 class SponsersSerializers(serializers.ModelSerializer):
     class Meta:
@@ -20,3 +20,13 @@ class AboutUsSerializer(serializers.ModelSerializer):
     class Meta:
         model = AboutUs
         fields = ['content']
+
+class ExecutiveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Executive 
+        fields = ['name', 'title', 'origin_country']
+
+class MemberCountriesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MemberCountries
+        fields = ['name', 'flag', 'facebook', 'instagram', 'twitter', 'site']

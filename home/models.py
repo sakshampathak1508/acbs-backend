@@ -52,9 +52,9 @@ class MemberCountries(models.Model):
     
 class Executive(models.Model):
     name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='executives')
     title = models.CharField(max_length=200)
     origin_country = models.CharField(max_length=100, verbose_name="Country of Origin")
-
     def __str__(self) -> str:
         return self.name
 

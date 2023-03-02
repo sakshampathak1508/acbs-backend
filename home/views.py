@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import AboutUsSerializer, SponsersSerializers, AnnouncementSerializer
-from .models import AboutUs, Annoucement, Sponser
+from .serializers import AboutUsSerializer, ExecutiveSerializer, MemberCountriesSerializer, SponsersSerializers, AnnouncementSerializer
+from .models import AboutUs, Annoucement, Executive, MemberCountries, Sponser
 # Create your views here.
 
 
@@ -31,5 +31,17 @@ class AboutUSView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+class ExecutivesView(APIView):
+    serializer_class = ExecutiveSerializer
+    def get(self, request):
+        data = Executive.objects.all()
+        serializer = self.serializer_class(data, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
+class MemberCountriesView(APIView):
+    serializer_class = MemberCountriesSerializer
+    def get(self, request):
+        data = MemberCountries.objects.all()
+        serializer = self.serializer_class(data, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
