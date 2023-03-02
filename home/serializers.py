@@ -24,7 +24,7 @@ class AboutUsSerializer(serializers.ModelSerializer):
 class ExecutiveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Executive 
-        fields = ['name', 'title', 'origin_country']
+        fields = ['name', 'title', 'origin_country', 'image']
 
 class MemberCountriesSerializer(serializers.ModelSerializer):
     class Meta:
