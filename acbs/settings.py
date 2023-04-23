@@ -93,23 +93,22 @@ WSGI_APPLICATION = 'acbs.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'acbsbackend$acbs-backend',
+        'USER': 'acbsbackend',
+        'PASSWORD': 'wakeupneo',
+        'HOST': 'acbsbackend.mysql.pythonanywhere-services.com',
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'sakshampathak$acbs-database',
-            'USER': 'sakshampathak',
-            'PASSWORD': 'wakeupneo',
-            'HOST': 'sakshampathak.mysql.pythonanywhere-services.com',
-        }
-    }
+}
 
 
 # Password validation
