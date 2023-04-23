@@ -36,12 +36,12 @@ class AboutUs(models.Model):
 
 
 class MemberCountries(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-    flag = models.ImageField(upload_to='countries/flags')
-    facebook = models.URLField(blank=True, null=True)
-    instagram = models.URLField(blank=True, null=True)
-    twitter = models.URLField(blank=True, null=True)
+    name = models.CharField(max_length=100,blank=True,null=True)
+    president = models.CharField(max_length=100,blank=True,null=True)
+    flag = models.ImageField(upload_to='countries',blank=True,null=True)
     site= models.URLField(blank=True, null=True)
+    email = models.URLField(blank=True, null=True)
+    contact_number = models.CharField(max_length=15, blank=True,null=True)
 
     class Meta:
         verbose_name = "Member Country"
@@ -51,10 +51,14 @@ class MemberCountries(models.Model):
         return self.name
     
 class Executive(models.Model):
-    name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='executives')
-    title = models.CharField(max_length=200)
-    origin_country = models.CharField(max_length=100, verbose_name="Country of Origin")
+    name = models.CharField(max_length=100,blank=True,null=True)
+    title = models.CharField(max_length=200,blank=True,null=True)
+    image = models.ImageField(upload_to='executives',blank=True,null=True)
+    facebook = models.URLField(blank=True, null=True)
+    instagram = models.URLField(blank=True, null=True)
+    twitter = models.URLField(blank=True, null=True)
+    email = models.URLField(blank=True, null=True)
+
     def __str__(self) -> str:
         return self.name
 

@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (
-    ExecutivesView, MemberCountriesView, SponsersView, LatestAnnouncement, AboutUSView
+    ExecutivesView, MemberCountriesView, SponsersView, LatestAnnouncement, AboutUSView, SearchView
 )
 
 urlpatterns = [
@@ -8,5 +8,6 @@ urlpatterns = [
     path('announcement/', LatestAnnouncement.as_view()),
     path('about-us/', AboutUSView.as_view()),
     path('executives/', ExecutivesView.as_view()),
-    path('member-countries/',  MemberCountriesView.as_view())
+    path('member-countries/',  MemberCountriesView.as_view()),
+    path('search/',  SearchView.as_view())
 ]

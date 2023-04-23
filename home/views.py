@@ -2,8 +2,13 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from django.db.models import Q
 from .serializers import AboutUsSerializer, ExecutiveSerializer, MemberCountriesSerializer, SponsersSerializers, AnnouncementSerializer
 from .models import AboutUs, Annoucement, Executive, MemberCountries, Sponser
+from news.models import News
+from news.serializers import CardNewsSerializer
+from events.models import Event
+from events.serializers import EventCardSerializer
 # Create your views here.
 
 
@@ -44,4 +49,15 @@ class MemberCountriesView(APIView):
         data = MemberCountries.objects.all()
         serializer = self.serializer_class(data, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+class SearchView(APIView):
+    def get(self, request, *args, **kwargs):
+        output_data = {}
+        query = request.GET.get('query','')
+        if query:
+            news_obj  = News.objects.filter(Q(title__icontains=query) | Q(content__icontains=query) | Q(year__icontains=query))
+            event_obj = Event.objects.filter(Q(name__icontains=query) |  Q(location__icontains=query) |Q(venue__icontains=query) |Q(content1__icontains=query) |Q(content2__icontains=query))
+            output_data['news'] =   CardNewsSerializer(news_obj,many=True).data
+            output_data['events'] =   EventCardSerializer(event_obj,many=True).data
+        return Response(output_data,status=status.HTTP_200_OK)
 
