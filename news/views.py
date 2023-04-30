@@ -16,7 +16,7 @@ class CustomPagination(pagination.PageNumberPagination):
 
 class AllNewsApiView(generics.ListAPIView):
     queryset = News.objects.all().order_by('-timestamp')
-    serializer_class = NewsSerializer
+    serializer_class = CardNewsSerializer
     pagination_class = CustomPagination
 
 class YearNewsView(APIView):
@@ -38,6 +38,6 @@ class NewsView(APIView):
 
 class LatestNewsView(APIView):
     def get(self, request, *args, **kwargs):
-        obj = News.objects.filter(category=1).order_by('-timestamp')[:3]
+        obj = News.objects.filter(category=1).order_by('-timestamp')[:9]
         ser = CardNewsSerializer(obj,many=True)        
         return Response(ser.data, status = status.HTTP_200_OK)

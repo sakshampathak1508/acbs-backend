@@ -7,7 +7,12 @@ from .models import (
 class EventCardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ('id','name','slug','location','start_date','end_date',"event_banner")
+        fields = ('id','name','slug','location','start_date','end_date',"event_banner","acbs_category")
+
+class EventFrontSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = ('id','name','slug','location','start_date','end_date',"acbs_category")
 
 class EventSerializer(serializers.ModelSerializer):
     content1 = serializers.SerializerMethodField()

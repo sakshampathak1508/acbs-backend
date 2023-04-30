@@ -12,16 +12,16 @@ NEWS_CATEGORY = (
 )
 
 ACBS_CATEGORY = (
-    (1,'Snooker'),
-    (2,'Billiards'),
-    (3,'10Red'),
-    (4,'6Red'),
-    (5,'Team'),
-    (6,'Juniors'),
-    (7,'8Ball Pool'),
-    (8,'9Ball Pool'),
-    (9,'10Ball Pool'),
-    (10,'World Cup'),
+    ('Snooker','Snooker'),
+    ('Billiards','Billiards'),
+    ('10Red','10Red'),
+    ('6Red','6Red'),
+    ('Team','Team'),
+    ('Juniors','Juniors'),
+    ('8Ball Pool','8Ball Pool'),
+    ('9Ball Pool','9Ball Pool'),
+    ('10Ball Pool','10Ball Pool'),
+    ('World Cup','World Cup'),
 )
 
 class NewsWriter(models.Model):
@@ -36,7 +36,7 @@ class NewsWriter(models.Model):
 class News(models.Model):
     title = models.CharField(max_length=200,default="")
     category = models.PositiveIntegerField(choices=NEWS_CATEGORY)
-    acbs_category = models.PositiveIntegerField(choices=ACBS_CATEGORY,blank=True,null=True)
+    acbs_category = models.CharField(choices=ACBS_CATEGORY,max_length=100,blank=True,null=True)
     image = models.ImageField(upload_to='news/images',blank=True,null=True)
     timestamp  = models.DateTimeField(default = timezone.now)
     year = models.CharField(max_length=4)
