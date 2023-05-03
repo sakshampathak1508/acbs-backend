@@ -61,3 +61,13 @@ class SearchView(APIView):
             output_data['events'] =   EventCardSerializer(event_obj,many=True).data
         return Response(output_data,status=status.HTTP_200_OK)
 
+class FeaturedView(APIView):
+    def get(self, request, *args, **kwargs):
+        output_data = {}
+        query = request.GET.get('query','')
+        if query:
+            news_obj  = News.objects.all().order_by(-'timestamp')[:3]
+            event_obj = Event.objects.all().order_by(-'start_date')[:3]
+            output_data['news'] =   CardNewsSerializer(news_obj,many=True).data
+            output_data['events'] =   EventCardSerializer(event_obj,many=True).data
+        return Response(output_data,status=status.HTTP_200_OK)
