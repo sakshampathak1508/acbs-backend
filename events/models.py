@@ -32,6 +32,7 @@ class Event(models.Model):
     live = models.URLField(blank=True,null=True)
     content1 = QuillField(blank=True)
     content2 = QuillField(blank=True)
+    is_featured = models.BooleanField(default=False)
     show_on_front = models.BooleanField(default=False)
     slug = models.CharField(max_length=256,blank=True,null=True)
     year = models.CharField(max_length=4,blank=True,null=True)
