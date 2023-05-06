@@ -8,7 +8,7 @@ from .models import AboutUs, Annoucement, Executive, MemberCountries, Sponser
 from news.models import News
 from news.serializers import CardNewsSerializer
 from events.models import Event
-from events.serializers import EventCardSerializer
+from events.serializers import EventCardSerializer,EventFeaturedSerializer
 # Create your views here.
 
 
@@ -67,5 +67,5 @@ class FeaturedView(APIView):
         news_obj  = News.objects.filter(category=2).order_by(-'timestamp')[:3]
         event_obj = Event.objects.filter(is_featured=True).order_by(-'start_date')[:3]
         output_data['news'] =   CardNewsSerializer(news_obj,many=True).data
-        output_data['events'] =   EventCardSerializer(event_obj,many=True).data
+        output_data['events'] =   EventFeaturedSerializer(event_obj,many=True).data
         return Response(output_data,status=status.HTTP_200_OK)

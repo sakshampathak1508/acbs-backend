@@ -14,6 +14,11 @@ class EventFrontSerializer(serializers.ModelSerializer):
         model = Event
         fields = ('id','name','slug','location','start_date','end_date',"acbs_category")
 
+class EventFeaturedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = ('id','name','slug','event_banner','groups','knockouts','results','live','photographs','video')
+
 class EventSerializer(serializers.ModelSerializer):
     content1 = serializers.SerializerMethodField()
     content2 = serializers.SerializerMethodField()
