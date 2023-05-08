@@ -10,7 +10,7 @@ from rest_framework import status
 from rest_framework import pagination,generics
 
 class CustomPagination(pagination.PageNumberPagination):
-    page_size = 30
+    page_size = 2
     page_size_query_param = 'page_size'
     page_query_param = 'p'
 
@@ -39,5 +39,5 @@ class NewsView(APIView):
 class LatestNewsView(APIView):
     def get(self, request, *args, **kwargs):
         obj = News.objects.filter(category=1).order_by('-timestamp')[:9]
-        ser = CardNewsSerializer(obj,many=True)        
+        ser = CardNewsSerializer(obj,many=True)
         return Response(ser.data, status = status.HTTP_200_OK)

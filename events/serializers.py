@@ -5,6 +5,7 @@ from .models import (
 )
 
 class EventCardSerializer(serializers.ModelSerializer):
+    event_banner = serializers.ReadOnlyField(source='event_banner.url')
     class Meta:
         model = Event
         fields = ('id','name','slug','location','start_date','end_date',"event_banner","acbs_category")
@@ -31,4 +32,4 @@ class EventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        fields = ["id","name","acbs_category","event_banner","location","venue","start_date","end_date","results","photographs","video","live","slug","year","content1","content2",]
+        fields = ["id","name","slug","acbs_category","event_banner","location","venue","start_date","end_date","groups","knockouts","results","live","photographs","video","year","content1","content2",]

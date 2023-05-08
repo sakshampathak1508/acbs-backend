@@ -5,6 +5,7 @@ from .models import (
 )
 
 class CardNewsSerializer(serializers.ModelSerializer):
+    image = serializers.ReadOnlyField(source='image.url')
     class Meta:
         model = News
         fields = ('id','title','timestamp','slug','image','views',)
