@@ -52,9 +52,14 @@ class ContactSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class PastChampionSerializer(serializers.ModelSerializer):
+    content = serializers.SerializerMethodField()
+
+    def get_content(self, instance):
+        return str(instance.content.html)
+
     class Meta:
         model = PastChampion
-        fields = '__all__'
+        fields = ('id','name','caption','image','slug','content')
 
 class AllChampionSerializer(serializers.ModelSerializer):
     class Meta:
