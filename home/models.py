@@ -78,8 +78,8 @@ class Rule(models.Model):
     content = QuillField(blank=True)
 
     class Meta:
-        verbose_name = "About Us"
-        verbose_name_plural = "About Us"
+        verbose_name = "Rule"
+        verbose_name_plural = "Rules"
     
     def __str__(self):           
         return "About Us"
