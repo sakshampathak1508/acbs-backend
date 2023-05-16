@@ -88,7 +88,7 @@ class PastChampion(models.Model):
     name = models.CharField(max_length=200,default="")
     image = models.ImageField(upload_to="rule/images",blank=True,null=True)
     caption = models.CharField(max_length=100,default="",blank=True,null=True)
-    content = models.TextField(blank=True,null=True)
+    content = QuillField(blank=True)
     slug = models.CharField(max_length=256,blank=True,null=True)
 
     def save(self,*args,**kwargs):
