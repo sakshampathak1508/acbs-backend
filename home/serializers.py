@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Annoucement, Executive, Sponser, AboutUs, MemberCountries
+from .models import Annoucement, Executive, Sponser, AboutUs, MemberCountries, Download, Rule, PastChampion, Contact
 
 class SponsersSerializers(serializers.ModelSerializer):
     class Meta:
@@ -30,3 +30,28 @@ class MemberCountriesSerializer(serializers.ModelSerializer):
     class Meta:
         model = MemberCountries
         fields = '__all__'
+
+class DownloadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Download 
+        fields = '__all__'
+
+class RuleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rule 
+        fields = '__all__'
+
+class ContactSerializer(CustomModelSerializer):
+    class Meta:
+        model = Contact
+        fields = '__all__'
+
+class PastChampionSerializer(CustomModelSerializer):
+    class Meta:
+        model = PastChampion
+        fields = '__all__'
+
+class AllChampionSerializer(CustomModelSerializer):
+    class Meta:
+        model = PastChampion
+        fields = ('id','name','caption','image','slug')
