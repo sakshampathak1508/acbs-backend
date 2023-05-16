@@ -41,17 +41,17 @@ class RuleSerializer(serializers.ModelSerializer):
         model = Rule 
         fields = '__all__'
 
-class ContactSerializer(CustomModelSerializer):
+class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
         fields = '__all__'
 
-class PastChampionSerializer(CustomModelSerializer):
+class PastChampionSerializer(serializers.ModelSerializer):
     class Meta:
         model = PastChampion
         fields = '__all__'
 
-class AllChampionSerializer(CustomModelSerializer):
+class AllChampionSerializer(serializers.ModelSerializer):
     class Meta:
         model = PastChampion
         fields = ('id','name','caption','image','slug')
