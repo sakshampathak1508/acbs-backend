@@ -82,7 +82,7 @@ class Rule(models.Model):
         verbose_name_plural = "Rules"
     
     def __str__(self):           
-        return "About Us"
+        return "Rules"
 
 class PastChampion(models.Model):
     name = models.CharField(max_length=200,default="")

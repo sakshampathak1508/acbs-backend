@@ -37,9 +37,14 @@ class DownloadSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class RuleSerializer(serializers.ModelSerializer):
+    content = serializers.SerializerMethodField()
+
+    def get_content(self, instance):
+        return str(instance.content.html)
+    
     class Meta:
-        model = Rule 
-        fields = '__all__'
+        model = Rule
+        fields = ['content']
 
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:
