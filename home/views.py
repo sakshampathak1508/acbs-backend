@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Q
 from .serializers import (
-AboutUsSerializer, ExecutiveSerializer, MemberCountriesSerializer, SponsersSerializers, 
+AboutUsSerializer, ExecutiveSerializer, MemberCountriesSerializer, SponsersSerializers,
 AnnouncementSerializer, DownloadSerializer, RuleSerializer, ContactSerializer, PastChampionSerializer,
 AllChampionSerializer
 )
@@ -21,7 +21,7 @@ class SponsersView(APIView):
         data = Sponser.objects.all()
         serializer = SponsersSerializers(data, many=True)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
-        
+
 class LatestAnnouncement(APIView):
     serializer_class = AnnouncementSerializer
     def get(self, request, *args, **kwargs):
@@ -93,7 +93,7 @@ class DownloadView(APIView):
     def get(self, request, *args, **kwargs):
         output_data = []
         obj = Download.objects.filter(is_active=True)
-        if obj: 
+        if obj:
             output_data = DownloadSerializer(obj,many=True).data
         return Response(output_data,status=status.HTTP_200_OK)
 
@@ -113,14 +113,14 @@ class ChampsView(APIView):
 
 class CategoryView(APIView):
     def get(self, request, *args, **kwargs):
-        output_data = {}
+        output_data = []
         cat = request.GET.get('cat', '')
         ty = request.GET.get('type','')
         num = request.GET.get('p', '')
+        ans = int(num)*20
         if cat and num:
-            ans = int(num)*20
             if ty=='news':
-                output_data['news'] = CardNewsSerializer(News.objects.filter(acbs_category=cat).order_by('-timestamp')[ans-20:ans],many=True).data
+                output_data = CardNewsSerializer(News.objects.filter(acbs_category=cat).order_by('-timestamp')[ans-20:ans],many=True).data
             elif ty=='event':
-                output_data['event'] = EventCardSerializer(Event.objects.filter(acbs_category=cat).order_by('-start_date')[ans-20:ans],many=True).data
+                output_data = EventCardSerializer(Event.objects.filter(acbs_category=cat).order_by('-start_date')[ans-20:ans],many=True).data
         return Response(output_data, status=status.HTTP_200_OK)

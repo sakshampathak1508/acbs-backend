@@ -10,17 +10,17 @@ class Annoucement(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     show = models.BooleanField(default=True)
     created_at = models.DateTimeField(default=timezone.now)
-    
-    def __str__(self):           
+
+    def __str__(self):
         return self.title
 
 
-class Sponser(models.Model):    
-    name = models.CharField(max_length=200,default="")    
-    image = models.ImageField(upload_to='sponser/image',blank=True,null=True)    
-    url = models.URLField(max_length=200,blank=True,null=True)        
+class Sponser(models.Model):
+    name = models.CharField(max_length=200,default="")
+    image = models.ImageField(upload_to='sponser/image',blank=True,null=True)
+    url = models.URLField(max_length=200,blank=True,null=True)
 
-    def __str__(self):           
+    def __str__(self):
         return self.name
 
 
@@ -30,14 +30,17 @@ class AboutUs(models.Model):
     class Meta:
         verbose_name = "About Us"
         verbose_name_plural = "About Us"
-    
-    def __str__(self):           
+
+    def __str__(self):
         return "About Us"
 
 
 class MemberCountries(models.Model):
     name = models.CharField(max_length=100,blank=True,null=True)
-    president = models.CharField(max_length=100,blank=True,null=True)
+    position1 = models.CharField(max_length=100,blank=True,null=True)
+    person1 = models.CharField(max_length=100,blank=True,null=True)
+    position2 = models.CharField(max_length=100,blank=True,null=True)
+    person2 = models.CharField(max_length=100,blank=True,null=True)
     flag = models.ImageField(upload_to='countries',blank=True,null=True)
     site= models.URLField(blank=True, null=True)
     email = models.URLField(blank=True, null=True)
@@ -46,10 +49,10 @@ class MemberCountries(models.Model):
     class Meta:
         verbose_name = "Member Country"
         verbose_name_plural = "Member Countries"
-    
+
     def __str__(self) -> str:
         return self.name
-    
+
 class Executive(models.Model):
     name = models.CharField(max_length=100,blank=True,null=True)
     title = models.CharField(max_length=200,blank=True,null=True)
@@ -80,8 +83,8 @@ class Rule(models.Model):
     class Meta:
         verbose_name = "Rule"
         verbose_name_plural = "Rules"
-    
-    def __str__(self):           
+
+    def __str__(self):
         return "Rules"
 
 class PastChampion(models.Model):

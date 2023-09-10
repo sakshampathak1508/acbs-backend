@@ -18,7 +18,7 @@ class EventFrontSerializer(serializers.ModelSerializer):
 class EventFeaturedSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ('id','name','slug','event_banner','groups','knockouts','results','live','photographs','video')
+        fields = ('id','name','slug','event_banner','details','groups','knockouts','live','photographs','video')
 
 class EventSerializer(serializers.ModelSerializer):
     content1 = serializers.SerializerMethodField()
@@ -32,4 +32,4 @@ class EventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        fields = ["id","name","slug","acbs_category","event_banner","location","venue","start_date","end_date","groups","knockouts","results","live","photographs","video","year","content1","content2",]
+        fields = ["id","name","slug","acbs_category","event_banner","location","venue","start_date","end_date","details","groups","knockouts","live","photographs","video","year","content1","content2",]

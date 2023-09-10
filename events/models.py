@@ -18,7 +18,7 @@ ACBS_CATEGORY = (
 )
 
 class Event(models.Model):
-    
+
     name = models.CharField(max_length=265,default="")
     acbs_category = models.CharField(choices=ACBS_CATEGORY,max_length=100,blank=True,null=True)
     event_banner = models.ImageField(upload_to='news/images',blank=True,null=True)
@@ -26,9 +26,9 @@ class Event(models.Model):
     venue = models.CharField(max_length=200,blank=True,null=True)
     start_date = models.DateField(default=timezone.now)
     end_date = models.DateField(default=timezone.now)
+    details = models.URLField(blank=True,null=True)
     groups = models.URLField(blank=True,null=True)
     knockouts = models.URLField(blank=True,null=True)
-    results = models.URLField(blank=True,null=True)
     live = models.URLField(blank=True,null=True)
     photographs = models.URLField(blank=True,null=True)
     video = models.URLField(blank=True,null=True)
